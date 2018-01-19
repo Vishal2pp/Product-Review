@@ -1,6 +1,14 @@
 package com.test.model;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
 public class User {
+	@Id
 	private String userName;
 	private String userPass;
 	private String emailId;

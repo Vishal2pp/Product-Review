@@ -11,7 +11,7 @@
 <table>
 <tr><td>Enter User Name-</td><td><input type="text" name="userName"></td></tr>
 <tr><td>Enter User Password-</td><td><input type="password" name="userPass"></td></tr>
-<tr><td>Enter User Email Id-</td><td><input type="email" name="emailId"></td></tr>
+<tr><td>Enter User Email Id-</td><td><input type="text" name="emailId"></td></tr>
 <tr><td>Enter User Mobile-</td><td><input type="text" name="phoneNumber"></td></tr>
 <tr><td><font color="red">${msg}</font></td><td><input type="submit" value="Add User"></td></tr>
 </table>

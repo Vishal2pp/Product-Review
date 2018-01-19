@@ -19,7 +19,7 @@ public class HomeController {
 	//@Qualifier(value="")
 	private UserService userService;
 	
-	@RequestMapping(value = "/login.html", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		return "login";
 	}
