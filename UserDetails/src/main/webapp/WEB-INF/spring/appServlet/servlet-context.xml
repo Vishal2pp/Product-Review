@@ -28,9 +28,9 @@
 	
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url"	value="jdbc:mysql://localhost:3307/vishal" />
+		<beans:property name="url"	value="jdbc:mysql://localhost:3306/Project" />
 		<beans:property name="username" value="root" />
-		<beans:property name="password" value="Vishal@123" />
+		<beans:property name="password" value="ervaibhav" />
 	</beans:bean>
 	
 	<beans:bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -44,7 +44,7 @@
             <beans:props>
                 <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
                 <beans:prop key="hibernate.show_sql">true</beans:prop>   
-                <beans:prop key="hibernate.hbm2ddl.auto">verify</beans:prop>
+                <beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
             </beans:props>
         </beans:property>
     </beans:bean>

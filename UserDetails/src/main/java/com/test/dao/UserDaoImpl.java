@@ -1,14 +1,13 @@
 package com.test.dao;
 
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.test.model.Login;
-import com.test.model.User;
+import com.test.model.User1;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -27,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@Transactional
-	public boolean addUser(User user) {
+	public boolean addUser(User1 user) {
 		
 		System.out.println("aalo");
 		System.out.println(sessionFactory==null);
@@ -38,14 +37,14 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@Transactional
-	public boolean removeUser(User user) {
+	public boolean removeUser(User1 user) {
 		System.out.println("User removed");
 		return true;
 	}
 
 	@Override
 	@Transactional
-	public boolean updateUser(User user) {
+	public boolean updateUser(User1 user) {
 		System.out.println("User updated");
 		return true;
 	}

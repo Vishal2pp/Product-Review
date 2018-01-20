@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.test.dao.UserDao;
 import com.test.model.Login;
-import com.test.model.User;
+import com.test.model.User1;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,17 +18,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean addUser(User user) {
+	public boolean addUser(User1 user) {
 		return userDao.addUser(user);
 	}
 
 	@Override
-	public boolean removeUser(User user) {
+	public boolean removeUser(User1 user) {
 		return userDao.removeUser(user);
 	}
 
 	@Override
-	public boolean updateUser(User user) {
+	public boolean updateUser(User1 user) {
 		return userDao.updateUser(user);
 	}
 

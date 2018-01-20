@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.model.Login;
-import com.test.model.User;
+import com.test.model.User1;
 import com.test.service.UserService;
 
 
@@ -51,7 +51,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/addUser", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("user")User u, Model model) {
+	public String addUser(@ModelAttribute("user")User1 u, Model model) {
 		if(userService.addUser(u)) {
 			model.addAttribute("msg",u.getUserName()+" added successfully.");
 			return "addUser";
@@ -62,7 +62,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/removeUser", method = RequestMethod.POST)
-	public String removeUser(@ModelAttribute("user")User u, Model model) {
+	public String removeUser(@ModelAttribute("user")User1 u, Model model) {
 		if(userService.removeUser(u)) {
 			model.addAttribute("msg",u.getUserName()+" removed successfully.");
 			return "removeUser";
@@ -73,7 +73,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
-	public String updateUser(@ModelAttribute("u")User u, Model model) {
+	public String updateUser(@ModelAttribute("u")User1 u, Model model) {
 		if(userService.updateUser(u)) {
 			model.addAttribute("msg",u.getUserName()+" updated successfully.");
 			return "updateUser";
