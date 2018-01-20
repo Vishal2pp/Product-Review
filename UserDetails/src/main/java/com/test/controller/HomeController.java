@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.model.Login;
-import com.test.model.User1;
 import com.test.service.UserService;
 
 

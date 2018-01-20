@@ -1,12 +1,9 @@
 package com.test.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 
-@Entity
+
 public class User1 {
-	@Id
 	private String userName;
 	private String userPass;
 	private String emailId;
