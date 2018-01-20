@@ -13,23 +13,32 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao;
 	
 	@Override
-	public boolean doLogin(Login login) {
-		return userDao.doLogin(login);
+	public boolean validateUserName(Login login) {
+		if(login.getUserName()==null||login.getUserName().length()==0)
+		{
+			return false;
+		}
+		return true;
+	}
+
+
+	@Override
+	public boolean validatepassword(Login login) {
+		if(login.getPassword()==null||login.getPassword().length()==0)
+		{
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public boolean addUser(User1 user) {
-		return userDao.addUser(user);
-	}
-
-	@Override
-	public boolean removeUser(User1 user) {
-		return userDao.removeUser(user);
-	}
-
-	@Override
-	public boolean updateUser(User1 user) {
-		return userDao.updateUser(user);
+	public boolean validateUser(Login login) {
+		if(userDao.validateUser(login))
+			return true;
+		else
+			return false;
 	}
 
 }
+
+

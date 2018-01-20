@@ -16,70 +16,83 @@ import com.test.service.UserService;
 public class HomeController {
 	
 	@Autowired
-	//@Qualifier(value="")
 	private UserService userService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
+		return "home1";
+	}
+	
+	@RequestMapping(value = "/loginUser", method = RequestMethod.GET)
+	public String showAddUser() {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/showAddUser", method = RequestMethod.GET)
-	public String showAddUser() {
-		return "addUser";
-	}
-	
-	@RequestMapping(value = "/showRemoveUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showRemoveUser() {
-		return "removeUser";
+		return "register";
 	}
 	
-	@RequestMapping(value = "/showUpdateUser", method = RequestMethod.GET)
-	public String showUpdateUser() {
-		return "updateUser";
-	}
-	
-	@RequestMapping(value="/doLogin", method = RequestMethod.POST)
-	public String doLogin(@ModelAttribute("user")Login u, Model model) {
-		if(userService.doLogin(u)) {
-			model.addAttribute("name",u);
-			return "home";
-		}else {
-			model.addAttribute("msg","Invalid credentials..");
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@ModelAttribute("credentials")Login login, Model model) {
+		
+		if(userService.validateUserName(login))
+		{
+			if(userService.validatepassword(login))
+			{	
+				//previous code	
+				if(userService.validateUser(login))
+				{
+					//login successful, redirecting user to welcome page  
+					model.addAttribute("UserName","Welcome "+login.getUserName());
+					
+					return "welcome";
+				}
+				else
+				{
+					model.addAttribute("username",login.getUserName());
+					model.addAttribute("spanPassword", "*Please enter valid Password");
+					return "login";
+				}
+			}
+			else
+			{
+				model.addAttribute("username",login.getUserName());
+				model.addAttribute("password",login.getPassword());
+				model.addAttribute("spanPassword", "*Please enter Password");
+				return "login";
+			}
+		}
+		else if(userService.validatepassword(login))
+		{
+			if(userService.validateUser(login))
+			{
+				//login successful, redirecting user to welcome page  
+				model.addAttribute("UserName","Welcome "+login.getUserName());
+				return "welcome";
+			}
+			else
+			{
+				model.addAttribute("username",login.getUserName());
+				return "login";
+			}
+		}
+		else
+		{	
+			model.addAttribute("flag", "false");
+			model.addAttribute("spanUserName", "*Please enter User Name");
+			model.addAttribute("spanPassword", "*Please enter Password");
 			return "login";
 		}
+		
+			
+//		model.addAttribute("UserName", login.getUserName());
+//		model.addAttribute("Password", login.getPassword());
+//		return "welcome";
+		
+		
 	}
 	
-	@RequestMapping(value="/addUser", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("user")User1 u, Model model) {
-		if(userService.addUser(u)) {
-			model.addAttribute("msg",u.getUserName()+" added successfully.");
-			return "addUser";
-		}else {
-			model.addAttribute("msg","Failed to add user.Try again");
-			return "addUser";
-		}
-	}
 	
-	@RequestMapping(value="/removeUser", method = RequestMethod.POST)
-	public String removeUser(@ModelAttribute("user")User1 u, Model model) {
-		if(userService.removeUser(u)) {
-			model.addAttribute("msg",u.getUserName()+" removed successfully.");
-			return "removeUser";
-		}else {
-			model.addAttribute("msg","Failed to remove user.Try again");
-			return "removeUser";
-		}
-	}
 	
-	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
-	public String updateUser(@ModelAttribute("u")User1 u, Model model) {
-		if(userService.updateUser(u)) {
-			model.addAttribute("msg",u.getUserName()+" updated successfully.");
-			return "updateUser";
-		}else {
-			model.addAttribute("msg","Failed to update user.Try again");
-			return "updateUser";
-		}
-	}
 }

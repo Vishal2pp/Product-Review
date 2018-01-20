@@ -7,11 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/user/removeUser" modelAttribute="u" method="POST">
-<table>
-<tr><td>Enter User Name to remove-</td><td><input type="text" name="userName"></td></tr>
-<tr><td><font color="red">${msg}</font></td><td><input type="submit" value="Remove User"></td></tr>
-</table>
-</form>
+	<div align="center">
+		<h2>Registered!</h2>
+	</div>
 </body>
 </html>

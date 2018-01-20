@@ -1,9 +1,7 @@
 package com.test.model;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 
 @Entity
