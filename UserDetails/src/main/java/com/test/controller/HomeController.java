@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.model.Login;
 import com.test.service.UserService;
+import com.test.service.temp1;
 
 
 @Controller
@@ -16,7 +17,8 @@ public class HomeController {
 	
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private temp1 t;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		return "home1";
