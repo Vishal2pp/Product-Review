@@ -1,5 +1,10 @@
 package com.product.review;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.product.model.User;
 import com.product.service.UserService;
@@ -72,4 +79,39 @@ public class HomeController {
 		m.addAttribute("regMsg", "Registeration Failed...");
 		return "register";
 	}
+	
+	@RequestMapping(value = "/upload", method = RequestMethod.GET)
+	public String fupload() {
+		return "upload";
+	}
+	
+	 @Autowired
+     ServletContext context;
+
+	
+	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	public @ResponseBody
+	String uploadFileHandler(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
+
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				String rootPath = context.getRealPath("/resources/images");
+				System.out.println("path="+rootPath);
+
+				File serverFile = new File(rootPath + File.separator + name);
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+
+				return "You successfully uploaded file=" + name;
+			} catch (Exception e) {
+				return "You failed to upload " + name + " => " + e.getMessage();
+			}
+		} else {
+			return "failed to upload " + name + " because the file was empty.";
+		}
+	}
+
 }
